@@ -44,6 +44,17 @@ public class UtilsDatabase {
         }
     }
 
+    public static void delete_sql() {
+        ScriptRunner scriptRunner = new ScriptRunner(connection);
+        scriptRunner.setSendFullScript(false);
+        scriptRunner.setStopOnError(true);
+        try {
+            scriptRunner.runScript(new java.io.FileReader("src/main/resources/delete_sql.sql"));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private static void setSearchPath(String searchPath) throws SQLException {
         try (Statement statement = connection.createStatement()) {
             // Execute the SET search_path query

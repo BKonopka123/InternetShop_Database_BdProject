@@ -37,6 +37,11 @@ public class MainGUIController {
             utilsDatabase.initialization_sql();
             JOptionPane.showConfirmDialog(null, "Baza danych zainicjowana", "Initialize Database", JOptionPane.DEFAULT_OPTION);
         });
+
+        mainGUIForm.getButton_delete_database().addActionListener(e -> {
+            utilsDatabase.delete_sql();
+            JOptionPane.showConfirmDialog(null, "Baza danych usunięta", "Delete Database", JOptionPane.DEFAULT_OPTION);
+        });
     }
 
     private static void init() {
