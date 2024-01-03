@@ -8,9 +8,10 @@ import javax.swing.*;
 public class MainGUIForm {
 
     private JFrame frame;
-    private JButton button_initialize;
-    private JButton button1;
     private JPanel panel_main;
+    private JButton button_initialize_database;
+    private JButton button_delete_database;
+    private JPanel panel_initialization;
 
     public MainGUIForm() {
         frame = new JFrame("MainGUIForm");

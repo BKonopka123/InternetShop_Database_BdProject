@@ -1,5 +1,8 @@
 package Model;
 
+import org.apache.ibatis.jdbc.ScriptRunner;
+
+import java.io.FileNotFoundException;
 import java.sql.*;
 import java.util.List;
 
@@ -27,6 +30,17 @@ public class UtilsDatabase {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void initialization_sql() {
+        ScriptRunner scriptRunner = new ScriptRunner(connection);
+        scriptRunner.setSendFullScript(false);
+        scriptRunner.setStopOnError(true);
+        try {
+            scriptRunner.runScript(new java.io.FileReader("src/main/resources/initialization_sql.sql"));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
