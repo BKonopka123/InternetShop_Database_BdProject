@@ -12,6 +12,7 @@ public class MainGUIForm {
     private JButton button_initialize_database;
     private JButton button_delete_database;
     private JPanel panel_initialization;
+    private JPanel panel_bottom;
 
     public MainGUIForm() {
         frame = new JFrame("MainGUIForm");

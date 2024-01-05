@@ -35,7 +35,7 @@ public class UtilsDatabase {
 
     public static void initialization_sql() {
         ScriptRunner scriptRunner = new ScriptRunner(connection);
-        scriptRunner.setSendFullScript(false);
+        scriptRunner.setSendFullScript(true);
         scriptRunner.setStopOnError(true);
         try {
             scriptRunner.runScript(new java.io.FileReader("src/main/resources/initialization_sql.sql"));
@@ -46,7 +46,7 @@ public class UtilsDatabase {
 
     public static void delete_sql() {
         ScriptRunner scriptRunner = new ScriptRunner(connection);
-        scriptRunner.setSendFullScript(false);
+        scriptRunner.setSendFullScript(true);
         scriptRunner.setStopOnError(true);
         try {
             scriptRunner.runScript(new java.io.FileReader("src/main/resources/delete_sql.sql"));
