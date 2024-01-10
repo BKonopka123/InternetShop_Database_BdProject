@@ -62,7 +62,7 @@ CREATE TABLE sklep.Produkt (
     rabat INTEGER DEFAULT 0,
     wysokosc INTEGER NOT NULL,
     szerokosc INTEGER NOT NULL,
-    ilosc_egzemplarzy INTEGER DEFALUT 100,
+    ilosc_egzemplarzy INTEGER DEFAULT 100,
     ocena FLOAT DEFAULT 0,
     ilosc_ocen INTEGER DEFAULT 0,
     CONSTRAINT produkt_pk PRIMARY KEY (produkt_id)
