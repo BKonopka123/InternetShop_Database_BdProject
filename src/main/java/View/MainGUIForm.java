@@ -46,6 +46,14 @@ public class MainGUIForm {
     private JLabel label_si_select_own;
     private JButton button_si_select_own;
     private JTextField textField_si_select_own;
+    private JPanel panel_si_insert_input;
+    private JPanel panel_si_insert_output;
+    private JLabel label_si_insert_output;
+    private JLabel label_si_insert_input_1;
+    private JComboBox comboBox_si_insert_input;
+    private JButton button_si_insert_input_wpisz;
+    private JButton button_si_insert_input_make;
+    private JPanel panel_si_insert_input_values;
 
     private JCheckBox checkBox_si_select_input_right_more_0;
     private JCheckBox checkBox_si_select_input_right_more_1;
@@ -60,6 +68,29 @@ public class MainGUIForm {
     private JCheckBox checkBox_si_select_input_right_more_10;
     private JCheckBox checkBox_si_select_input_right_more_11;
     private JCheckBox checkBox_si_select_input_right_more_12;
+
+    private JLabel label_si_insert_input_values_1;
+    private JLabel label_si_insert_input_values_2;
+    private JLabel label_si_insert_input_values_3;
+    private JLabel label_si_insert_input_values_4;
+    private JLabel label_si_insert_input_values_5;
+    private JLabel label_si_insert_input_values_6;
+    private JLabel label_si_insert_input_values_7;
+    private JLabel label_si_insert_input_values_8;
+    private JLabel label_si_insert_input_values_9;
+    private JLabel label_si_insert_input_values_10;
+    private JLabel label_si_insert_input_values_11;
+    private JTextField textField_si_insert_input_values_1;
+    private JTextField textField_si_insert_input_values_2;
+    private JTextField textField_si_insert_input_values_3;
+    private JTextField textField_si_insert_input_values_4;
+    private JTextField textField_si_insert_input_values_5;
+    private JTextField textField_si_insert_input_values_6;
+    private JTextField textField_si_insert_input_values_7;
+    private JTextField textField_si_insert_input_values_8;
+    private JTextField textField_si_insert_input_values_9;
+    private JTextField textField_si_insert_input_values_10;
+    private JTextField textField_si_insert_input_values_11;
 
     /**
      * Konstruktor klasy MainGUIForm
@@ -79,6 +110,7 @@ public class MainGUIForm {
      */
     private void createUIComponents() {
         comboBox_si_select_input_table_init();
+        comboBox_si_insert_input_init();
     }
 
     //Główny SELECT
@@ -303,6 +335,230 @@ public class MainGUIForm {
         }
 
     //Główny INSERT
+        /**
+         * Metoda panel_si_insert_input_init() odpowiadająca za inicjalizację panelu panel_si_insert_input
+         */
+        private void comboBox_si_insert_input_init(){
+            comboBox_si_insert_input.addItem("Producent");
+            comboBox_si_insert_input.addItem("Klient");
+            comboBox_si_insert_input.addItem("Pracownik");
+            comboBox_si_insert_input.addItem("Produkt");
+            comboBox_si_insert_input.addItem("Typ_produktu");
+            comboBox_si_insert_input.addItem("Ocena");
+            comboBox_si_insert_input.addItem("Zamowienie");
+            comboBox_si_insert_input.addItem("Zamowione_produkty");
+            comboBox_si_insert_input.addItem("Dostawa");
+            comboBox_si_insert_input.addItem("Zamowiona_dostawa");
+        }
+
+        /**
+         * Metoda panel_si_insert_input_values_init() odpowiadająca za inicjalizację panelu panel_si_insert_input_values
+         * @param selectedTable - opcja wybrana z comboBox_si_insert_input
+         */
+        public void panel_si_insert_input_values_init(String selectedTable) {
+            getPanel_si_insert_input_values().removeAll();
+            getPanel_si_insert_input_values().revalidate();
+            getPanel_si_insert_input_values().repaint();
+            getPanel_si_insert_input_values().setLayout(new BoxLayout(getPanel_si_insert_input_values(), BoxLayout.Y_AXIS));
+            switch (selectedTable) {
+                case "Producent":
+                    panel_si_insert_input_values.removeAll();
+                    label_si_insert_input_values_1 = new JLabel("imie");
+                    label_si_insert_input_values_2 = new JLabel("nazwisko");
+                    label_si_insert_input_values_3 = new JLabel("firma");
+                    textField_si_insert_input_values_1 = new JTextField();
+                    textField_si_insert_input_values_2 = new JTextField();
+                    textField_si_insert_input_values_3 = new JTextField();
+                    panel_si_insert_input_values.add(label_si_insert_input_values_1);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_1);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_2);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_2);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_3);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_3);
+                    break;
+                case "Klient":
+                    panel_si_insert_input_values.removeAll();
+                    label_si_insert_input_values_1 = new JLabel("imie");
+                    label_si_insert_input_values_2 = new JLabel("nazwisko");
+                    label_si_insert_input_values_3 = new JLabel("pesel");
+                    label_si_insert_input_values_4 = new JLabel("data_urodzenia");
+                    label_si_insert_input_values_5 = new JLabel("email");
+                    textField_si_insert_input_values_1 = new JTextField();
+                    textField_si_insert_input_values_2 = new JTextField();
+                    textField_si_insert_input_values_3 = new JTextField();
+                    textField_si_insert_input_values_4 = new JTextField();
+                    textField_si_insert_input_values_5 = new JTextField();
+                    panel_si_insert_input_values.add(label_si_insert_input_values_1);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_1);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_2);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_2);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_3);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_3);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_4);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_4);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_5);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_5);
+                    break;
+                case "Pracownik":
+                    panel_si_insert_input_values.removeAll();
+                    label_si_insert_input_values_1 = new JLabel("imie");
+                    label_si_insert_input_values_2 = new JLabel("nazwisko");
+                    label_si_insert_input_values_3 = new JLabel("pesel");
+                    label_si_insert_input_values_4 = new JLabel("data_urodzenia");
+                    label_si_insert_input_values_5 = new JLabel("pensja");
+                    textField_si_insert_input_values_1 = new JTextField();
+                    textField_si_insert_input_values_2 = new JTextField();
+                    textField_si_insert_input_values_3 = new JTextField();
+                    textField_si_insert_input_values_4 = new JTextField();
+                    textField_si_insert_input_values_5 = new JTextField();
+                    panel_si_insert_input_values.add(label_si_insert_input_values_1);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_1);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_2);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_2);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_3);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_3);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_4);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_4);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_5);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_5);
+                    break;
+                case "Produkt":
+                    panel_si_insert_input_values.removeAll();
+                    label_si_insert_input_values_1 = new JLabel("typ_produktu_id");
+                    label_si_insert_input_values_2 = new JLabel("producent_id");
+                    label_si_insert_input_values_3 = new JLabel("tematyka");
+                    label_si_insert_input_values_4 = new JLabel("nazwa");
+                    label_si_insert_input_values_5 = new JLabel("cena");
+                    label_si_insert_input_values_6 = new JLabel("rabat");
+                    label_si_insert_input_values_7 = new JLabel("wysokosc");
+                    label_si_insert_input_values_8 = new JLabel("szerokosc");
+                    label_si_insert_input_values_9 = new JLabel("ilosc_egzemplarzy");
+                    label_si_insert_input_values_10 = new JLabel("ocena");
+                    label_si_insert_input_values_11 = new JLabel("ilosc_ocen");
+                    textField_si_insert_input_values_1 = new JTextField();
+                    textField_si_insert_input_values_2 = new JTextField();
+                    textField_si_insert_input_values_3 = new JTextField();
+                    textField_si_insert_input_values_4 = new JTextField();
+                    textField_si_insert_input_values_5 = new JTextField();
+                    textField_si_insert_input_values_6 = new JTextField();
+                    textField_si_insert_input_values_7 = new JTextField();
+                    textField_si_insert_input_values_8 = new JTextField();
+                    textField_si_insert_input_values_9 = new JTextField();
+                    textField_si_insert_input_values_10 = new JTextField();
+                    textField_si_insert_input_values_11 = new JTextField();
+                    panel_si_insert_input_values.add(label_si_insert_input_values_1);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_1);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_2);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_2);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_3);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_3);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_4);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_4);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_5);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_5);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_6);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_6);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_7);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_7);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_8);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_8);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_9);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_9);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_10);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_10);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_11);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_11);
+                    break;
+                case "Typ_produktu":
+                    panel_si_insert_input_values.removeAll();
+                    label_si_insert_input_values_1 = new JLabel("typ_produktu");
+                    textField_si_insert_input_values_1 = new JTextField();
+                    panel_si_insert_input_values.add(label_si_insert_input_values_1);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_1);
+                    break;
+                case "Ocena":
+                    panel_si_insert_input_values.removeAll();
+                    label_si_insert_input_values_1 = new JLabel("klient_id");
+                    label_si_insert_input_values_2 = new JLabel("produkt_id");
+                    label_si_insert_input_values_3 = new JLabel("ocena");
+                    textField_si_insert_input_values_1 = new JTextField();
+                    textField_si_insert_input_values_2 = new JTextField();
+                    textField_si_insert_input_values_3 = new JTextField();
+                    panel_si_insert_input_values.add(label_si_insert_input_values_1);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_1);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_2);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_2);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_3);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_3);
+                    break;
+                case "Zamowienie":
+                    panel_si_insert_input_values.removeAll();
+                    label_si_insert_input_values_1 = new JLabel("pracownik_id");
+                    label_si_insert_input_values_2 = new JLabel("klient_id");
+                    label_si_insert_input_values_3 = new JLabel("data_zamowienia");
+                    label_si_insert_input_values_4 = new JLabel("data_zrealizowania");
+                    textField_si_insert_input_values_1 = new JTextField();
+                    textField_si_insert_input_values_2 = new JTextField();
+                    textField_si_insert_input_values_3 = new JTextField();
+                    textField_si_insert_input_values_4 = new JTextField();
+                    panel_si_insert_input_values.add(label_si_insert_input_values_1);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_1);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_2);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_2);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_3);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_3);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_4);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_4);
+                    break;
+                case "Zamowione_produkty":
+                    panel_si_insert_input_values.removeAll();
+                    label_si_insert_input_values_1 = new JLabel("zamowienie_id");
+                    label_si_insert_input_values_2 = new JLabel("produkt_id");
+                    label_si_insert_input_values_3 = new JLabel("ilosc_egzemplarzy");
+                    textField_si_insert_input_values_1 = new JTextField();
+                    textField_si_insert_input_values_2 = new JTextField();
+                    textField_si_insert_input_values_3 = new JTextField();
+                    panel_si_insert_input_values.add(label_si_insert_input_values_1);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_1);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_2);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_2);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_3);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_3);
+                    break;
+                case "Dostawa":
+                    panel_si_insert_input_values.removeAll();
+                    label_si_insert_input_values_1 = new JLabel("pracownik_id");
+                    label_si_insert_input_values_2 = new JLabel("data_zlozenia");
+                    label_si_insert_input_values_3 = new JLabel("data_realizacji");
+                    textField_si_insert_input_values_1 = new JTextField();
+                    textField_si_insert_input_values_2 = new JTextField();
+                    textField_si_insert_input_values_3 = new JTextField();
+                    panel_si_insert_input_values.add(label_si_insert_input_values_1);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_1);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_2);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_2);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_3);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_3);
+                    break;
+                case "Zamowiona_dostawa":
+                    panel_si_insert_input_values.removeAll();
+                    label_si_insert_input_values_1 = new JLabel("produkt_id");
+                    label_si_insert_input_values_2 = new JLabel("dostawa_id");
+                    label_si_insert_input_values_3 = new JLabel("ilosc_egzemplarzy");
+                    textField_si_insert_input_values_1 = new JTextField();
+                    textField_si_insert_input_values_2 = new JTextField();
+                    textField_si_insert_input_values_3 = new JTextField();
+                    panel_si_insert_input_values.add(label_si_insert_input_values_1);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_1);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_2);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_2);
+                    panel_si_insert_input_values.add(label_si_insert_input_values_3);
+                    panel_si_insert_input_values.add(textField_si_insert_input_values_3);
+                    break;
+                default:
+                    break;
+            }
+        }
 
     //Interfejs użytkownika - Producent
 

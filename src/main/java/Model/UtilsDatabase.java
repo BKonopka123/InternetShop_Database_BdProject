@@ -115,4 +115,12 @@ public class UtilsDatabase {
             return resultset;
         }
 
+    //Główny INSERT
+        public static Boolean insertMain(View.MainGUIForm mainGUIForm, String tableName, int number) throws SQLException {
+            setSearchPath("sklep");
+            MainINSERTModel mainINSERTModel = new MainINSERTModel();
+            Boolean result = mainINSERTModel.insertMainMethod(connection, mainGUIForm, tableName, number);
+            return result;
+        }
+
 }
