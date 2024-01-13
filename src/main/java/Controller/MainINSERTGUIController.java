@@ -61,25 +61,26 @@ public class MainINSERTGUIController {
                     int selectedTableNowNumber;
                     switch(selectedTableNow){
                         case "Producent", "Ocena", "Zamowione_produkty", "Dostawa", "Zamowiona_dostawa":
-                            selectedTableNowNumber = 4;
+                            selectedTableNowNumber = 3;
                             break;
                         case "Klient", "Pracownik":
-                            selectedTableNowNumber = 6;
+                            selectedTableNowNumber = 5;
                             break;
                         case "Produkt":
-                            selectedTableNowNumber = 12;
+                            selectedTableNowNumber = 11;
                             break;
                         case "Typ_produktu":
-                            selectedTableNowNumber = 2;
+                            selectedTableNowNumber = 1;
                             break;
                         case "Zamowienie":
-                            selectedTableNowNumber = 5;
+                            selectedTableNowNumber = 4;
                             break;
                         default:
                             selectedTableNowNumber = 0;
                             break;
                     }
-                    ResultSet result = utilsDatabase.selectMain(mainGUIForm, selectedTableNow, selectedTableNowNumber);
+                    Boolean result = utilsDatabase.insertMain(mainGUIForm, selectedTableNow, selectedTableNowNumber);
+                    mainGUIForm.label_si_insert_output_init(result);
             } catch (Exception exception) {
                 JOptionPane.showConfirmDialog(null, "Błąd", "Error", JOptionPane.DEFAULT_OPTION);
                 throw new RuntimeException(exception);

@@ -25,7 +25,7 @@ CREATE TABLE sklep.Dostawa (
      dostawa_id SERIAL,
      pracownik_id INTEGER NOT NULL,
      data_zlozenia DATE NOT NULL,
-     data_realizacji DATE,
+     data_realizacji DATE DEFAULT NULL,
      CONSTRAINT dostawa_pk PRIMARY KEY (dostawa_id)
 );
 

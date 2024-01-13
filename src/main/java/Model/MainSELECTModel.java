@@ -90,7 +90,7 @@ public class MainSELECTModel {
         try {
             String selectedColumns = String.join(", ", arrayList);
             PreparedStatement sql = connection.prepareStatement("SELECT " + selectedColumns + " FROM sklep." + tableName);
-            System.out.println(sql);
+            //System.out.println(sql);
             ResultSet resultSet = sql.executeQuery();
             return resultSet;
         } catch (SQLException e) {
