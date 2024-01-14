@@ -1,7 +1,9 @@
 package Model;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -17,11 +19,19 @@ public class MainINSERTModel {
                             arrayList_labels.add(mainGUIForm.getLabel_si_insert_input_values_1().getText());
                             arrayList_text.add(mainGUIForm.getTextField_si_insert_input_values_1().getText());
                         }
+                        else if(Objects.equals(mainGUIForm.getTextField_si_insert_input_values_1().getText(), "") && mainGUIForm.getLabel_si_insert_input_values_info_1().getText().matches(".*NOT NULL.*")) {
+                            JOptionPane.showConfirmDialog(null, "Błąd: Pole " + mainGUIForm.getLabel_si_insert_input_values_1().getText() + " nie może być puste", "Choose option", JOptionPane.DEFAULT_OPTION);
+                            return false;
+                        }
                         break;
                     case 2:
                         if(!Objects.equals(mainGUIForm.getTextField_si_insert_input_values_2().getText(), "")) {
                             arrayList_labels.add(mainGUIForm.getLabel_si_insert_input_values_2().getText());
                             arrayList_text.add(mainGUIForm.getTextField_si_insert_input_values_2().getText());
+                        }
+                        else if(Objects.equals(mainGUIForm.getTextField_si_insert_input_values_2().getText(), "") && mainGUIForm.getLabel_si_insert_input_values_info_2().getText().matches(".*NOT NULL.*")) {
+                            JOptionPane.showConfirmDialog(null, "Błąd: Pole " + mainGUIForm.getLabel_si_insert_input_values_2().getText() + " nie może być puste", "Choose option", JOptionPane.DEFAULT_OPTION);
+                            return false;
                         }
                         break;
                     case 3:
@@ -29,11 +39,19 @@ public class MainINSERTModel {
                             arrayList_labels.add(mainGUIForm.getLabel_si_insert_input_values_3().getText());
                             arrayList_text.add(mainGUIForm.getTextField_si_insert_input_values_3().getText());
                         }
+                        else if(Objects.equals(mainGUIForm.getTextField_si_insert_input_values_3().getText(), "") && mainGUIForm.getLabel_si_insert_input_values_info_3().getText().matches(".*NOT NULL.*")) {
+                            JOptionPane.showConfirmDialog(null, "Błąd: Pole " + mainGUIForm.getLabel_si_insert_input_values_3().getText() + " nie może być puste", "Choose option", JOptionPane.DEFAULT_OPTION);
+                            return false;
+                        }
                         break;
                     case 4:
                         if(!Objects.equals(mainGUIForm.getTextField_si_insert_input_values_4().getText(), "")) {
                             arrayList_labels.add(mainGUIForm.getLabel_si_insert_input_values_4().getText());
                             arrayList_text.add(mainGUIForm.getTextField_si_insert_input_values_4().getText());
+                        }
+                        else if(Objects.equals(mainGUIForm.getTextField_si_insert_input_values_4().getText(), "") && mainGUIForm.getLabel_si_insert_input_values_info_4().getText().matches(".*NOT NULL.*")) {
+                            JOptionPane.showConfirmDialog(null, "Błąd: Pole " + mainGUIForm.getLabel_si_insert_input_values_4().getText() + " nie może być puste", "Choose option", JOptionPane.DEFAULT_OPTION);
+                            return false;
                         }
                         break;
                     case 5:
@@ -41,11 +59,19 @@ public class MainINSERTModel {
                             arrayList_labels.add(mainGUIForm.getLabel_si_insert_input_values_5().getText());
                             arrayList_text.add(mainGUIForm.getTextField_si_insert_input_values_5().getText());
                         }
+                        else if(Objects.equals(mainGUIForm.getTextField_si_insert_input_values_5().getText(), "") && mainGUIForm.getLabel_si_insert_input_values_info_5().getText().matches(".*NOT NULL.*")) {
+                            JOptionPane.showConfirmDialog(null, "Błąd: Pole " + mainGUIForm.getLabel_si_insert_input_values_5().getText() + " nie może być puste", "Choose option", JOptionPane.DEFAULT_OPTION);
+                            return false;
+                        }
                         break;
                     case 6:
                         if(!Objects.equals(mainGUIForm.getTextField_si_insert_input_values_6().getText(), "")) {
                             arrayList_labels.add(mainGUIForm.getLabel_si_insert_input_values_6().getText());
                             arrayList_text.add(mainGUIForm.getTextField_si_insert_input_values_6().getText());
+                        }
+                        else if(Objects.equals(mainGUIForm.getTextField_si_insert_input_values_6().getText(), "") && mainGUIForm.getLabel_si_insert_input_values_info_6().getText().matches(".*NOT NULL.*")) {
+                            JOptionPane.showConfirmDialog(null, "Błąd: Pole " + mainGUIForm.getLabel_si_insert_input_values_6().getText() + " nie może być puste", "Choose option", JOptionPane.DEFAULT_OPTION);
+                            return false;
                         }
                         break;
                     case 7:
@@ -53,11 +79,19 @@ public class MainINSERTModel {
                             arrayList_labels.add(mainGUIForm.getLabel_si_insert_input_values_7().getText());
                             arrayList_text.add(mainGUIForm.getTextField_si_insert_input_values_7().getText());
                         }
+                        else if(Objects.equals(mainGUIForm.getTextField_si_insert_input_values_7().getText(), "") && mainGUIForm.getLabel_si_insert_input_values_info_7().getText().matches(".*NOT NULL.*")) {
+                            JOptionPane.showConfirmDialog(null, "Błąd: Pole " + mainGUIForm.getLabel_si_insert_input_values_7().getText() + " nie może być puste", "Choose option", JOptionPane.DEFAULT_OPTION);
+                            return false;
+                        }
                         break;
                     case 8:
                         if(!Objects.equals(mainGUIForm.getTextField_si_insert_input_values_8().getText(), "")) {
                             arrayList_labels.add(mainGUIForm.getLabel_si_insert_input_values_8().getText());
                             arrayList_text.add(mainGUIForm.getTextField_si_insert_input_values_8().getText());
+                        }
+                        else if(Objects.equals(mainGUIForm.getTextField_si_insert_input_values_8().getText(), "") && mainGUIForm.getLabel_si_insert_input_values_info_8().getText().matches(".*NOT NULL.*")) {
+                            JOptionPane.showConfirmDialog(null, "Błąd: Pole " + mainGUIForm.getLabel_si_insert_input_values_8().getText() + " nie może być puste", "Choose option", JOptionPane.DEFAULT_OPTION);
+                            return false;
                         }
                         break;
                     case 9:
@@ -65,17 +99,29 @@ public class MainINSERTModel {
                             arrayList_labels.add(mainGUIForm.getLabel_si_insert_input_values_9().getText());
                             arrayList_text.add(mainGUIForm.getTextField_si_insert_input_values_9().getText());
                         }
+                        else if(Objects.equals(mainGUIForm.getTextField_si_insert_input_values_9().getText(), "") && mainGUIForm.getLabel_si_insert_input_values_info_9().getText().matches(".*NOT NULL.*")) {
+                            JOptionPane.showConfirmDialog(null, "Błąd: Pole " + mainGUIForm.getLabel_si_insert_input_values_9().getText() + " nie może być puste", "Choose option", JOptionPane.DEFAULT_OPTION);
+                            return false;
+                        }
                         break;
                     case 10:
                         if(!Objects.equals(mainGUIForm.getTextField_si_insert_input_values_10().getText(), "")) {
                             arrayList_labels.add(mainGUIForm.getLabel_si_insert_input_values_10().getText());
                             arrayList_text.add(mainGUIForm.getTextField_si_insert_input_values_10().getText());
                         }
+                        else if(Objects.equals(mainGUIForm.getTextField_si_insert_input_values_10().getText(), "") && mainGUIForm.getLabel_si_insert_input_values_info_10().getText().matches(".*NOT NULL.*")) {
+                            JOptionPane.showConfirmDialog(null, "Błąd: Pole " + mainGUIForm.getLabel_si_insert_input_values_10().getText() + " nie może być puste", "Choose option", JOptionPane.DEFAULT_OPTION);
+                            return false;
+                        }
                         break;
                     case 11:
                         if(!Objects.equals(mainGUIForm.getTextField_si_insert_input_values_11().getText(), "")) {
                             arrayList_labels.add(mainGUIForm.getLabel_si_insert_input_values_11().getText());
                             arrayList_text.add(mainGUIForm.getTextField_si_insert_input_values_11().getText());
+                        }
+                        else if(Objects.equals(mainGUIForm.getTextField_si_insert_input_values_11().getText(), "") && mainGUIForm.getLabel_si_insert_input_values_info_11().getText().matches(".*NOT NULL.*")) {
+                            JOptionPane.showConfirmDialog(null, "Błąd: Pole " + mainGUIForm.getLabel_si_insert_input_values_11().getText() + " nie może być puste", "Choose option", JOptionPane.DEFAULT_OPTION);
+                            return false;
                         }
                         break;
                     default:
@@ -94,7 +140,12 @@ public class MainINSERTModel {
             System.out.println(sql);
             sql.executeUpdate();
             return true;
-        } catch (Exception exception) {
+        } catch(SQLException exception) {
+            JOptionPane.showConfirmDialog(null, "Błąd: " + exception.getMessage(), "Choose option", JOptionPane.DEFAULT_OPTION);
+            return false;
+        }
+        catch (Exception exception) {
+            JOptionPane.showConfirmDialog(null, "Błąd: " + exception.getMessage(), "Choose option", JOptionPane.DEFAULT_OPTION);
             return false;
         }
     }

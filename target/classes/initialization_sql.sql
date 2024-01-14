@@ -169,7 +169,7 @@ ALTER TABLE sklep.Zamowiona_dostawa ADD CONSTRAINT produkt_Zamowiona_dostawa_fk
         ON UPDATE NO ACTION
         NOT DEFERRABLE;
 
---Utworzenie funkcji, tryggerów i widoków
+--Utworzenie funkcji, tryggerów
 
 CREATE OR REPLACE FUNCTION sklep.add_ocena_function() RETURNS TRIGGER AS
 $$
@@ -210,6 +210,308 @@ LANGUAGE 'plpgsql';
 
 CREATE TRIGGER add_dostawa_trigger BEFORE INSERT OR UPDATE ON sklep.Zamowiona_dostawa
     FOR EACH ROW EXECUTE PROCEDURE sklep.add_dostawa_function();
+
+--Walidacja danych
+
+CREATE OR REPLACE FUNCTION validate_klient()
+    RETURNS TRIGGER AS $$
+BEGIN
+    IF CHAR_LENGTH(NEW.imie) < 2 OR CHAR_LENGTH(NEW.nazwisko) < 2 THEN
+        RAISE EXCEPTION 'Imię i nazwisko muszą mieć co najmniej 2 znaki.';
+    END IF;
+    IF LENGTH(NEW.pesel) <> 11 OR NOT NEW.pesel ~ E'^\\d+$' THEN
+        RAISE EXCEPTION 'Pesel musi mieć dokładnie 11 cyfr.';
+    END IF;
+    IF NEW.data_urodzenia > current_date THEN
+        RAISE EXCEPTION 'Data urodzenia nie może być z przyszłości.';
+    END IF;
+    IF NEW.email NOT LIKE '%@%' THEN
+        RAISE EXCEPTION 'Email musi zawierać znak @.';
+    END IF;
+    IF pg_typeof(NEW.imie) <> pg_typeof(''::varchar) THEN
+        RAISE EXCEPTION 'Imię musi być typu tekstowego.';
+    END IF;
+    IF pg_typeof(NEW.nazwisko) <> pg_typeof(''::varchar) THEN
+        RAISE EXCEPTION 'Nazwisko musi być typu tekstowego.';
+    END IF;
+    IF pg_typeof(NEW.pesel) <> pg_typeof(''::varchar) THEN
+        RAISE EXCEPTION 'Pesel musi być typu tekstowego.';
+    END IF;
+    IF pg_typeof(NEW.data_urodzenia) <> pg_typeof(current_date::date) THEN
+        RAISE EXCEPTION 'Data urodzenia musi być typu datowego.';
+    END IF;
+    IF pg_typeof(NEW.email) <> pg_typeof(''::varchar) THEN
+        RAISE EXCEPTION 'Email musi być typu tekstowego.';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER validate_klient_trigger BEFORE INSERT OR UPDATE
+    ON sklep.Klient FOR EACH ROW EXECUTE FUNCTION validate_klient();
+
+CREATE OR REPLACE FUNCTION validate_pracownik()
+    RETURNS TRIGGER AS $$
+BEGIN
+    IF CHAR_LENGTH(NEW.imie) < 2 OR CHAR_LENGTH(NEW.nazwisko) < 2 THEN
+        RAISE EXCEPTION 'Imię i nazwisko muszą mieć co najmniej 2 znaki.';
+    END IF;
+    IF LENGTH(NEW.pesel) <> 11 OR NOT NEW.pesel ~ E'^\\d+$' THEN
+        RAISE EXCEPTION 'Pesel musi mieć dokładnie 11 cyfr.';
+    END IF;
+    IF NEW.data_urodzenia > current_date THEN
+        RAISE EXCEPTION 'Data urodzenia nie może być z przyszłości.';
+    END IF;
+    IF pg_typeof(NEW.imie) <> pg_typeof(''::varchar) THEN
+        RAISE EXCEPTION 'Imię musi być typu tekstowego.';
+    END IF;
+    IF pg_typeof(NEW.nazwisko) <> pg_typeof(''::varchar) THEN
+        RAISE EXCEPTION 'Nazwisko musi być typu tekstowego.';
+    END IF;
+    IF pg_typeof(NEW.pesel) <> pg_typeof(''::varchar) THEN
+        RAISE EXCEPTION 'Pesel musi być typu tekstowego.';
+    END IF;
+    IF pg_typeof(NEW.data_urodzenia) <> pg_typeof(current_date::date) THEN
+        RAISE EXCEPTION 'Data urodzenia musi być typu datowego.';
+    END IF;
+    IF pg_typeof(NEW.pensja) <> pg_typeof(1::int) THEN
+        RAISE EXCEPTION 'Pensja musi być typu całkowitego.';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER validate_pracownik_trigger BEFORE INSERT OR UPDATE
+    ON sklep.Pracownik FOR EACH ROW EXECUTE FUNCTION validate_pracownik();
+
+CREATE OR REPLACE FUNCTION validate_dostawa()
+    RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.data_zlozenia > current_date THEN
+        RAISE EXCEPTION 'Data złożenia nie może być z przyszłości.';
+    END IF;
+    IF NEW.data_realizacji > current_date THEN
+        RAISE EXCEPTION 'Data realizacji nie może być z przyszłości.';
+    END IF;
+    IF pg_typeof(NEW.pracownik_id) <> pg_typeof(1::int) THEN
+        RAISE EXCEPTION 'Pracownik_id musi być typu całkowitego.';
+    END IF;
+    IF pg_typeof(NEW.data_zlozenia) <> pg_typeof(current_date::date) THEN
+        RAISE EXCEPTION 'Data złożenia musi być typu datowego.';
+    END IF;
+    IF pg_typeof(NEW.data_realizacji) <> pg_typeof(current_date::date) THEN
+        RAISE EXCEPTION 'Data realizacji musi być typu datowego.';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER validate_dostawa_trigger BEFORE INSERT OR UPDATE
+    ON sklep.Dostawa FOR EACH ROW EXECUTE FUNCTION validate_dostawa();
+
+CREATE OR REPLACE FUNCTION validate_zamowienie()
+    RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.data_zamowienia > current_date THEN
+        RAISE EXCEPTION 'Data zamówienia nie może być z przyszłości.';
+    END IF;
+    IF NEW.data_zrealizowania > current_date THEN
+        RAISE EXCEPTION 'Data zrealizowania nie może być z przyszłości.';
+    END IF;
+    IF pg_typeof(NEW.pracownik_id) <> pg_typeof(1::int) THEN
+        RAISE EXCEPTION 'Pracownik_id musi być typu całkowitego.';
+    END IF;
+    IF pg_typeof(NEW.klient_id) <> pg_typeof(1::int) THEN
+        RAISE EXCEPTION 'Klient_id musi być typu całkowitego.';
+    END IF;
+    IF pg_typeof(NEW.data_zamowienia) <> pg_typeof(current_date::date) THEN
+        RAISE EXCEPTION 'Data zamówienia musi być typu datowego.';
+    END IF;
+    IF pg_typeof(NEW.data_zrealizowania) <> pg_typeof(current_date::date) THEN
+        RAISE EXCEPTION 'Data zrealizowania musi być typu datowego.';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER validate_zamowienie_trigger BEFORE INSERT OR UPDATE
+    ON sklep.Zamowienie FOR EACH ROW EXECUTE FUNCTION validate_zamowienie();
+
+CREATE OR REPLACE FUNCTION validate_producent()
+    RETURNS TRIGGER AS $$
+BEGIN
+    IF CHAR_LENGTH(NEW.imie) < 2 OR CHAR_LENGTH(NEW.nazwisko) < 2 THEN
+        RAISE EXCEPTION 'Imię i nazwisko muszą mieć co najmniej 2 znaki.';
+    END IF;
+    IF pg_typeof(NEW.imie) <> pg_typeof(''::varchar) THEN
+        RAISE EXCEPTION 'Imię musi być typu tekstowego.';
+    END IF;
+    IF pg_typeof(NEW.nazwisko) <> pg_typeof(''::varchar) THEN
+        RAISE EXCEPTION 'Nazwisko musi być typu tekstowego.';
+    END IF;
+    IF pg_typeof(NEW.firma) <> pg_typeof(''::varchar) THEN
+        RAISE EXCEPTION 'Firma musi być typu tekstowego.';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER validate_producent_trigger BEFORE INSERT OR UPDATE
+    ON sklep.Producent FOR EACH ROW EXECUTE FUNCTION validate_producent();
+
+CREATE OR REPLACE FUNCTION validate_typ_produktu()
+    RETURNS TRIGGER AS $$
+BEGIN
+    IF CHAR_LENGTH(NEW.typ_produktu) < 2 THEN
+        RAISE EXCEPTION 'Typ produktu musi mieć co najmniej 2 znaki.';
+    END IF;
+    IF pg_typeof(NEW.typ_produktu) <> pg_typeof(''::varchar) THEN
+        RAISE EXCEPTION 'Typ produktu musi być typu tekstowego.';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER validate_typ_produktu_trigger BEFORE INSERT OR UPDATE
+    ON sklep.Typ_produktu FOR EACH ROW EXECUTE FUNCTION validate_typ_produktu();
+
+CREATE OR REPLACE FUNCTION validate_produkt()
+    RETURNS TRIGGER AS $$
+BEGIN
+    IF CHAR_LENGTH(NEW.tematyka) < 2 THEN
+        RAISE EXCEPTION 'Tematyka musi mieć co najmniej 2 znaki.';
+    END IF;
+    IF CHAR_LENGTH(NEW.nazwa) < 2 THEN
+        RAISE EXCEPTION 'Nazwa musi mieć co najmniej 2 znaki.';
+    END IF;
+    IF NEW.cena < 0 THEN
+        RAISE EXCEPTION 'Cena nie może być ujemna.';
+    END IF;
+    IF NEW.rabat < 0 THEN
+        RAISE EXCEPTION 'Rabat nie może być ujemny.';
+    END IF;
+    IF NEW.wysokosc < 0 THEN
+        RAISE EXCEPTION 'Wysokość nie może być ujemna.';
+    END IF;
+    IF NEW.szerokosc < 0 THEN
+        RAISE EXCEPTION 'Szerokość nie może być ujemna.';
+    END IF;
+    IF NEW.ilosc_egzemplarzy < 0 THEN
+        RAISE EXCEPTION 'Ilość egzemplarzy nie może być ujemna.';
+    END IF;
+    IF NEW.ocena < 0 THEN
+        RAISE EXCEPTION 'Ocena nie może być ujemna.';
+    END IF;
+    IF NEW.ilosc_ocen < 0 THEN
+        RAISE EXCEPTION 'Ilość ocen nie może być ujemna.';
+    END IF;
+    IF pg_typeof(NEW.typ_produktu_id) <> pg_typeof(1::int) THEN
+        RAISE EXCEPTION 'Typ produktu musi być typu całkowitego.';
+    END IF;
+    IF pg_typeof(NEW.producent_id) <> pg_typeof(1::int) THEN
+        RAISE EXCEPTION 'Producent musi być typu całkowitego.';
+    END IF;
+    IF pg_typeof(NEW.tematyka) <> pg_typeof(''::varchar) THEN
+        RAISE EXCEPTION 'Tematyka musi być typu tekstowego.';
+    END IF;
+    IF pg_typeof(NEW.nazwa) <> pg_typeof(''::varchar) THEN
+        RAISE EXCEPTION 'Nazwa musi być typu tekstowego.';
+    END IF;
+    IF pg_typeof(NEW.cena) <> pg_typeof(1::int) THEN
+        RAISE EXCEPTION 'Cena musi być typu całkowitego.';
+    END IF;
+    IF pg_typeof(NEW.rabat) <> pg_typeof(1::int) THEN
+        RAISE EXCEPTION 'Rabat musi być typu całkowitego.';
+    END IF;
+    IF pg_typeof(NEW.wysokosc) <> pg_typeof(1::int) THEN
+        RAISE EXCEPTION 'Wysokość musi być typu całkowitego.';
+    END IF;
+    IF pg_typeof(NEW.szerokosc) <> pg_typeof(1::int) THEN
+        RAISE EXCEPTION 'Szerokość musi być typu całkowitego.';
+    END IF;
+    IF pg_typeof(NEW.ilosc_egzemplarzy) <> pg_typeof(1::int) THEN
+        RAISE EXCEPTION 'Ilość egzemplarzy musi być typu całkowitego.';
+    END IF;
+    IF pg_typeof(NEW.ocena) <> pg_typeof(1.0::float) THEN
+        RAISE EXCEPTION 'Ocena musi być typu zmiennoprzecinkowego.';
+    END IF;
+    IF pg_typeof(NEW.ilosc_ocen) <> pg_typeof(1::int) THEN
+        RAISE EXCEPTION 'Ilość ocen musi być typu całkowitego.';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER validate_produkt_trigger BEFORE INSERT OR UPDATE
+    ON sklep.Produkt FOR EACH ROW EXECUTE FUNCTION validate_produkt();
+
+CREATE OR REPLACE FUNCTION validate_zamowiona_dostawa()
+    RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.ilosc_egzemplarzy < 0 THEN
+        RAISE EXCEPTION 'Ilość egzemplarzy nie może być ujemna.';
+    END IF;
+    IF pg_typeof(NEW.produkt_id) <> pg_typeof(1::int) THEN
+        RAISE EXCEPTION 'Produkt_id musi być typu całkowitego.';
+    END IF;
+    IF pg_typeof(NEW.dostawa_id) <> pg_typeof(1::int) THEN
+        RAISE EXCEPTION 'Dostawa_id musi być typu całkowitego.';
+    END IF;
+    IF pg_typeof(NEW.ilosc_egzemplarzy) <> pg_typeof(1::int) THEN
+        RAISE EXCEPTION 'Ilość egzemplarzy musi być typu całkowitego.';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER validate_zamowiona_dostawa_trigger BEFORE INSERT OR UPDATE
+    ON sklep.Zamowiona_dostawa FOR EACH ROW EXECUTE FUNCTION validate_zamowiona_dostawa();
+
+CREATE OR REPLACE FUNCTION validate_zamowione_produkty()
+    RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.ilosc_egzemplarzy < 0 THEN
+        RAISE EXCEPTION 'Ilość egzemplarzy nie może być ujemna.';
+    END IF;
+    IF pg_typeof(NEW.produkt_id) <> pg_typeof(1::int) THEN
+        RAISE EXCEPTION 'Produkt_id musi być typu całkowitego.';
+    END IF;
+    IF pg_typeof(NEW.zamowienie_id) <> pg_typeof(1::int) THEN
+        RAISE EXCEPTION 'Zamowienie_id musi być typu całkowitego.';
+    END IF;
+    IF pg_typeof(NEW.ilosc_egzemplarzy) <> pg_typeof(1::int) THEN
+        RAISE EXCEPTION 'Ilość egzemplarzy musi być typu całkowitego.';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER validate_zamowione_produkty_trigger BEFORE INSERT OR UPDATE
+    ON sklep.Zamowione_produkty FOR EACH ROW EXECUTE FUNCTION validate_zamowione_produkty();
+
+CREATE OR REPLACE FUNCTION validate_ocena()
+    RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.ocena < 0 THEN
+        RAISE EXCEPTION 'Ocena nie może być ujemna.';
+    END IF;
+    IF pg_typeof(NEW.klient_id) <> pg_typeof(1::int) THEN
+        RAISE EXCEPTION 'Klient_id musi być typu całkowitego.';
+    END IF;
+    IF pg_typeof(NEW.produkt_id) <> pg_typeof(1::int) THEN
+        RAISE EXCEPTION 'Produkt_id musi być typu całkowitego.';
+    END IF;
+    IF pg_typeof(NEW.ocena) <> pg_typeof(1.0::float) THEN
+        RAISE EXCEPTION 'Ocena musi być typu zmiennoprzecinkowego.';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER validate_ocena_trigger BEFORE INSERT OR UPDATE
+    ON sklep.Ocena FOR EACH ROW EXECUTE FUNCTION validate_ocena();
+
+--Utworzenie widoków
 
 --Wypełnienie tabel danymi
 
