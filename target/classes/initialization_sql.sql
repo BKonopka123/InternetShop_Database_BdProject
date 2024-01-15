@@ -513,6 +513,19 @@ CREATE TRIGGER validate_ocena_trigger BEFORE INSERT OR UPDATE
 
 --Utworzenie widoków
 
+CREATE VIEW raport_1_view AS
+    SELECT produkt_id, tematyka, nazwa, cena, wysokosc, szerokosc, ilosc_egzemplarzy, ocena, ilosc_ocen FROM sklep.Produkt
+    WHERE ilosc_ocen > 0
+    ORDER BY produkt_id;
+
+CREATE VIEW raport_2_view AS
+    SELECT z.zamowienie_id, z.klient_id, z.data_zamowienia, z.data_zrealizowania, zp.produkt_id, zp.ilosc_egzemplarzy, p.cena
+    FROM sklep.Zamowienie z
+    JOIN sklep.Zamowione_produkty zp USING(zamowienie_id)
+    JOIN sklep.Produkt p USING(produkt_id)
+    GROUP BY z.zamowienie_id, zp.produkt_id, zp.ilosc_egzemplarzy, p.cena
+    ORDER BY z.zamowienie_id;
+
 --Wypełnienie tabel danymi
 
 INSERT INTO sklep.Typ_produktu (typ_produktu) VALUES ('plakat');     --1
