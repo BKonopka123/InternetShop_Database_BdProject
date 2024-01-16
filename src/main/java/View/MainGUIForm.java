@@ -54,6 +54,23 @@ public class MainGUIForm {
     private JButton button_si_insert_input_wpisz;
     private JButton button_si_insert_input_make;
     private JPanel panel_si_insert_input_values;
+    private JTextField textField_raportsone_value;
+    private JButton button_raportsone_make;
+    private JTable table_raportsone_output;
+    private JButton button_raportsone_save;
+    private JLabel label_raportsone_information_one;
+    private JButton button_raportstwo_make;
+    private JTable table_raportstwo_output;
+    private JButton button_raportstwo_save;
+    private JLabel label_raportstwo_information;
+    private JTextField textField_raportsthree_option;
+    private JButton button_raportsthree_make;
+    private JTable table_raportsthree_output;
+    private JButton button_raportsthree_save;
+    private JLabel label_raportsthree_information;
+    private JPanel panel_raportsone_output;
+    private JPanel panel_raportstwo_output;
+    private JPanel panel_raportsthree_output;
 
     private JCheckBox checkBox_si_select_input_right_more_0;
     private JCheckBox checkBox_si_select_input_right_more_1;
@@ -672,8 +689,101 @@ public class MainGUIForm {
     //Interfejs użytkownika - Pracownik
 
     //Raport 1
+        public void panel_raportsone_output_init(ResultSet result){
+            getPanel_raportsone_output().removeAll();
+            getPanel_raportsone_output().setLayout(new BoxLayout(getPanel_raportsone_output(), BoxLayout.Y_AXIS));
+            try {
+                int columnCount = result.getMetaData().getColumnCount();
+                String[] columnNames = new String[columnCount];
+                for(int i = 0; i < columnCount; i++){
+                    columnNames[i] = result.getMetaData().getColumnName(i+1);
+                }
+                Object[][] data = new Object[100][columnCount];
+                int i = 0;
+                while(result.next()){
+                    for(int j = 0; j < columnCount; j++){
+                        data[i][j] = result.getObject(j+1);
+                    }
+                    i++;
+                }
+                JTable table = new JTable(data, columnNames);
+                table_raportsone_output = table;
+                JScrollPane scrollPane = new JScrollPane(table);
+                scrollPane.setVisible(true);
+                scrollPane.setSize(800, 600);
+                scrollPane.revalidate();
+                scrollPane.repaint();
+                getPanel_raportsone_output().add(scrollPane);
+                getPanel_raportsone_output().revalidate();
+                getPanel_raportsone_output().repaint();
+            } catch (Exception e){
+                throw new RuntimeException(e);
+            }
+        }
 
     //Raport 2
+        public void panel_raportstwo_output_init(ResultSet result) {
+            getPanel_raportstwo_output().removeAll();
+            getPanel_raportstwo_output().setLayout(new BoxLayout(getPanel_raportstwo_output(), BoxLayout.Y_AXIS));
+            try {
+                int columnCount = result.getMetaData().getColumnCount();
+                String[] columnNames = new String[columnCount];
+                for (int i = 0; i < columnCount; i++) {
+                    columnNames[i] = result.getMetaData().getColumnName(i + 1);
+                }
+                Object[][] data = new Object[100][columnCount];
+                int i = 0;
+                while (result.next()) {
+                    for (int j = 0; j < columnCount; j++) {
+                        data[i][j] = result.getObject(j + 1);
+                    }
+                    i++;
+                }
+                JTable table = new JTable(data, columnNames);
+                table_raportstwo_output = table;
+                JScrollPane scrollPane = new JScrollPane(table);
+                scrollPane.setVisible(true);
+                scrollPane.setSize(800, 600);
+                scrollPane.revalidate();
+                scrollPane.repaint();
+                getPanel_raportstwo_output().add(scrollPane);
+                getPanel_raportstwo_output().revalidate();
+                getPanel_raportstwo_output().repaint();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
 
     //Raport 3
+    public void panel_raportsthree_output_init(ResultSet result) {
+        getPanel_raportsthree_output().removeAll();
+        getPanel_raportsthree_output().setLayout(new BoxLayout(getPanel_raportsthree_output(), BoxLayout.Y_AXIS));
+        try {
+            int columnCount = result.getMetaData().getColumnCount();
+            String[] columnNames = new String[columnCount];
+            for (int i = 0; i < columnCount; i++) {
+                columnNames[i] = result.getMetaData().getColumnName(i + 1);
+            }
+            Object[][] data = new Object[100][columnCount];
+            int i = 0;
+            while (result.next()) {
+                for (int j = 0; j < columnCount; j++) {
+                    data[i][j] = result.getObject(j + 1);
+                }
+                i++;
+            }
+            JTable table = new JTable(data, columnNames);
+            table_raportsthree_output = table;
+            JScrollPane scrollPane = new JScrollPane(table);
+            scrollPane.setVisible(true);
+            scrollPane.setSize(800, 600);
+            scrollPane.revalidate();
+            scrollPane.repaint();
+            getPanel_raportsthree_output().add(scrollPane);
+            getPanel_raportsthree_output().revalidate();
+            getPanel_raportsthree_output().repaint();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

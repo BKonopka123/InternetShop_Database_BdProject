@@ -3,6 +3,8 @@ package Controller;
 import Model.UtilsDatabase;
 import View.MainGUIForm;
 
+import javax.swing.*;
+import java.sql.ResultSet;
 import java.util.Objects;
 
 /**
@@ -27,8 +29,25 @@ public class RaportOneGUIController {
      * Metoda control() odpowiadająca za kontrolę głównego okna programu
      */
     public void control(UtilsDatabase utilsDatabase, MainGUIForm mainGUIForm) {
+        mainGUIForm.getButton_raportsone_make().addActionListener(e -> {
+            try {
+                Double value = Double.parseDouble(mainGUIForm.getTextField_raportsone_value().getText());
+                ResultSet resultSet = utilsDatabase.raportOneButtonOne(value);
+                mainGUIForm.panel_raportsone_output_init(resultSet);
+            } catch (Exception exception) {
+                JOptionPane.showConfirmDialog(null, "Błąd: " + exception.getMessage(), "Choose option", JOptionPane.DEFAULT_OPTION);
+                throw new RuntimeException(exception);
+            }
+        });
 
-
+        mainGUIForm.getButton_raportsone_save().addActionListener(e -> {
+            try {
+                utilsDatabase.raportOneButtonTwo(mainGUIForm);
+            } catch (Exception exception) {
+                JOptionPane.showConfirmDialog(null, "Błąd: " + exception.getMessage(), "Choose option", JOptionPane.DEFAULT_OPTION);
+                throw new RuntimeException(exception);
+            }
+        });
     }
 
     /**

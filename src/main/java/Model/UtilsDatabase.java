@@ -123,4 +123,45 @@ public class UtilsDatabase {
             return result;
         }
 
+    //Raport 1
+        public static ResultSet raportOneButtonOne(Double value) throws SQLException {
+            setSearchPath("sklep");
+            RaportOneModel raportOneModel = new RaportOneModel();
+            ResultSet resultset = raportOneModel.raportOneButtonOneMethod(connection, value);
+            return resultset;
+        }
+
+        public static void raportOneButtonTwo(View.MainGUIForm mainGUIForm) throws SQLException {
+            setSearchPath("sklep");
+            RaportOneModel raportOneModel = new RaportOneModel();
+            raportOneModel.raportOneButtonTwoMethod(connection, mainGUIForm);
+        }
+
+    //Raport 2
+        public static ResultSet raportTwoButtonOne() throws SQLException {
+            setSearchPath("sklep");
+            RaportTwoModel raportTwoModel = new RaportTwoModel();
+            ResultSet resultset = raportTwoModel.raportTwoButtonOneMethod(connection);
+            return resultset;
+        }
+
+        public static void raportTwoButtonTwo(View.MainGUIForm mainGUIForm) throws SQLException {
+            setSearchPath("sklep");
+            RaportTwoModel raportTwoModel = new RaportTwoModel();
+            raportTwoModel.raportTwoButtonTwoMethod(connection, mainGUIForm);
+        }
+
+    //Raport 3
+        public static ResultSet raportThreeButtonOne(Double value) throws SQLException {
+            setSearchPath("sklep");
+            RaportThreeModel raportThreeModel = new RaportThreeModel();
+            ResultSet resultset = raportThreeModel.raportThreeButtonOneMethod(connection, value);
+            return resultset;
+        }
+
+        public static void raportThreeButtonTwo(View.MainGUIForm mainGUIForm) throws SQLException {
+            setSearchPath("sklep");
+            RaportThreeModel raportThreeModel = new RaportThreeModel();
+            raportThreeModel.raportThreeButtonTwoMethod(connection, mainGUIForm);
+        }
 }

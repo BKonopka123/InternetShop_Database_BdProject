@@ -3,6 +3,8 @@ package Controller;
 import Model.UtilsDatabase;
 import View.MainGUIForm;
 
+import javax.swing.*;
+import java.sql.ResultSet;
 import java.util.Objects;
 
 /**
@@ -27,7 +29,25 @@ public class RaportThreeGUIController {
      * Metoda control() odpowiadająca za kontrolę głównego okna programu
      */
     public void control(UtilsDatabase utilsDatabase, MainGUIForm mainGUIForm) {
+        mainGUIForm.getButton_raportsthree_make().addActionListener(e -> {
+            try {
+                Double value = Double.parseDouble(mainGUIForm.getTextField_raportsthree_option().getText());
+                ResultSet resultSet = utilsDatabase.raportThreeButtonOne(value);
+                mainGUIForm.panel_raportsthree_output_init(resultSet);
+            } catch (Exception exception) {
+                JOptionPane.showConfirmDialog(null, "Błąd: " + exception.getMessage(), "Choose option", JOptionPane.DEFAULT_OPTION);
+                throw new RuntimeException(exception);
+            }
+        });
 
+        mainGUIForm.getButton_raportsthree_save().addActionListener(e -> {
+            try {
+                utilsDatabase.raportThreeButtonTwo(mainGUIForm);
+            } catch (Exception exception) {
+                JOptionPane.showConfirmDialog(null, "Błąd: " + exception.getMessage(), "Choose option", JOptionPane.DEFAULT_OPTION);
+                throw new RuntimeException(exception);
+            }
+        });
 
     }
 
