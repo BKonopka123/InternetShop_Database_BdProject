@@ -513,12 +513,12 @@ CREATE TRIGGER validate_ocena_trigger BEFORE INSERT OR UPDATE
 
 --Utworzenie widoków
 
-CREATE VIEW Raport_one AS
+CREATE VIEW sklep.raportone AS
     SELECT produkt_id, tematyka, nazwa, cena, wysokosc, szerokosc, ilosc_egzemplarzy, ocena, ilosc_ocen FROM sklep.Produkt
     WHERE ilosc_ocen > 0
     ORDER BY produkt_id;
 
-CREATE VIEW Raport_two AS
+CREATE VIEW sklep.raporttwo AS
     SELECT z.zamowienie_id, z.klient_id, z.data_zamowienia, z.data_zrealizowania, SUM(zp.ilosc_egzemplarzy * (p.cena - p.rabat)) AS koszt_zamowienie
     FROM sklep.Zamowienie z
     JOIN sklep.Zamowione_produkty zp USING(zamowienie_id)
@@ -526,7 +526,7 @@ CREATE VIEW Raport_two AS
     GROUP BY z.zamowienie_id
     ORDER BY z.zamowienie_id;
 
-CREATE VIEW Raport_three AS
+CREATE VIEW sklep.raportthree AS
     SELECT k.klient_id, k.imie, k.nazwisko, k.email, COUNT(DISTINCT z.zamowienie_id) AS ilosc_zamowien, SUM(zp.ilosc_egzemplarzy * (p.cena - p.rabat)) /  COUNT(DISTINCT z.zamowienie_id) AS sredni_koszt_zamowienia
     FROM sklep.Klient k
     JOIN sklep.Zamowienie z USING (klient_id)

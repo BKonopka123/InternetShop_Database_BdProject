@@ -5,16 +5,25 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+/** Klasa modelu raportu drugiego */
 public class RaportTwoModel {
+    /** Metoda zwracająca wynik zapytania do bazy danych
+     * @param connection połączenie z bazą danych
+     * @return wynik zapytania do bazy danych
+     */
     public static ResultSet raportTwoButtonOneMethod(Connection connection) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Raport_two");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM raporttwo");
             return preparedStatement.executeQuery();
         } catch (Exception exception) {
             throw new RuntimeException(exception);
         }
     }
 
+    /** Metoda zapisująca wynik zapytania do pliku .csv
+     * @param connection połączenie z bazą danych
+     * @param mainGUIForm obiekt klasy View.MainGUIForm
+     */
     public static void raportTwoButtonTwoMethod(Connection connection, View.MainGUIForm mainGUIForm){
         String path = System.getProperty("user.dir");
         String pathToSave = path + "\\src\\main\\java\\Raporty\\Raport2.csv";

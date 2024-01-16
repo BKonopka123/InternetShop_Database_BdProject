@@ -1,5 +1,5 @@
 produkt_id;tematyka;nazwa;cena;wysokosc;szerokosc;ilosc_egzemplarzy;ocena;ilosc_ocen;
-1;zwierzęta;Kot;60;50;50;107;5.0;1;
+1;zwierzęta;Kot;60;50;50;217;5.0;1;
 2;zwierzęta;Pies;50;50;50;111;4.0;1;
 6;film;Star Wars;70;90;90;229;5.0;1;
 7;film;Piraci z Karaibów;90;90;90;212;4.0;1;
@@ -7,9 +7,9 @@ produkt_id;tematyka;nazwa;cena;wysokosc;szerokosc;ilosc_egzemplarzy;ocena;ilosc_
 12;serial;Breaking Bad;50;60;60;299;4.0;1;
 16;krajobraz;Jezioro;70;90;50;197;5.0;1;
 17;krajobraz;Góry;80;90;50;198;4.0;1;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
+27;konie;klacz;100;60;90;100;4.0;12;
+28;konie;klacz;100;60;90;100;4.0;12;
+30;konie;klacz;100;60;90;100;4.0;12;
 ;;;;;;;;;
 ;;;;;;;;;
 ;;;;;;;;;

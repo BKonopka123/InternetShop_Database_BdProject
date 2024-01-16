@@ -82,9 +82,6 @@ public class MainGUIController {
         mainGUIForm.getFrame().setVisible(true);
         MainSELECTGUIController.getInstance(utilsDatabase, mainGUIForm);
         MainINSERTGUIController.getInstance(utilsDatabase, mainGUIForm);
-        UInterfaceProducentGUIController.getInstance(utilsDatabase, mainGUIForm);
-        UInterfaceClientGUIController.getInstance(utilsDatabase, mainGUIForm);
-        UInterfaceWorkerGUIController.getInstance(utilsDatabase, mainGUIForm);
         RaportOneGUIController.getInstance(utilsDatabase, mainGUIForm);
         RaportTwoGUIController.getInstance(utilsDatabase, mainGUIForm);
         RaportThreeGUIController.getInstance(utilsDatabase, mainGUIForm);

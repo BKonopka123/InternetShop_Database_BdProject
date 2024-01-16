@@ -13,10 +13,16 @@ import java.util.Objects;
 public class RaportOneGUIController {
     private static RaportOneGUIController raportOneGUIController;
 
+    /**
+     * Konstruktor klasy RaportOneGUIController
+     */
     public RaportOneGUIController(UtilsDatabase utilsDatabase, MainGUIForm mainGUIForm) {
         control(utilsDatabase, mainGUIForm);
     }
 
+    /**
+     * Metoda getInstance() odpowiadająca za zwrócenie instancji klasy RaportOneGUIController
+     */
     public static RaportOneGUIController getInstance(UtilsDatabase utilsDatabase, MainGUIForm mainGUIForm){
         if(Objects.isNull(raportOneGUIController)) {
             raportOneGUIController = new RaportOneGUIController(utilsDatabase, mainGUIForm);
@@ -29,6 +35,9 @@ public class RaportOneGUIController {
      * Metoda control() odpowiadająca za kontrolę głównego okna programu
      */
     public void control(UtilsDatabase utilsDatabase, MainGUIForm mainGUIForm) {
+        /**
+         * Metoda getButton_raportsone_make().addActionListener() odpowiadająca za obsługę zdarzenia naciśnięcia przycisku "Generuj raport"
+         */
         mainGUIForm.getButton_raportsone_make().addActionListener(e -> {
             try {
                 Double value = Double.parseDouble(mainGUIForm.getTextField_raportsone_value().getText());
@@ -40,6 +49,9 @@ public class RaportOneGUIController {
             }
         });
 
+        /**
+         * Metoda getButton_raportsone_save().addActionListener() odpowiadająca za obsługę zdarzenia naciśnięcia przycisku "Zapisz raport"
+         */
         mainGUIForm.getButton_raportsone_save().addActionListener(e -> {
             try {
                 utilsDatabase.raportOneButtonTwo(mainGUIForm);

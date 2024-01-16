@@ -45,7 +45,7 @@ public class UtilsDatabase {
     }
 
     //Incjalizacja i usunięcie bazy danych
-    /**
+        /**
      * Metoda initialization_sql() odpowiadająca za inicjalizację bazy danych
      */
         public static void initialization_sql() {
@@ -116,6 +116,14 @@ public class UtilsDatabase {
         }
 
     //Główny INSERT
+        /**
+         * Metoda insertMain() odpowiadająca za główny INSERT
+         * @param mainGUIForm - główne okno programu
+         * @param tableName - nazwa tabeli do której wykonywany będzie INSERT
+         * @param number - liczba kolumn w tabeli
+         * @return result
+         * @throws SQLException - wyjątek
+         */
         public static Boolean insertMain(View.MainGUIForm mainGUIForm, String tableName, int number) throws SQLException {
             setSearchPath("sklep");
             MainINSERTModel mainINSERTModel = new MainINSERTModel();
@@ -124,6 +132,12 @@ public class UtilsDatabase {
         }
 
     //Raport 1
+        /**
+         * Metoda raportOneButtonOne() odpowiadająca za pierwszy przycisk raportu 1 - generowanie raportu
+         * @param value - wartość
+         * @return resultSet
+         * @throws SQLException - wyjątek
+         */
         public static ResultSet raportOneButtonOne(Double value) throws SQLException {
             setSearchPath("sklep");
             RaportOneModel raportOneModel = new RaportOneModel();
@@ -131,6 +145,11 @@ public class UtilsDatabase {
             return resultset;
         }
 
+        /**
+         * Metoda raportOneButtonTwo() odpowiadająca za drugi przycisk raportu 1 - zapis raportu do pliku
+         * @param mainGUIForm - główne okno programu
+         * @throws SQLException - wyjątek
+         */
         public static void raportOneButtonTwo(View.MainGUIForm mainGUIForm) throws SQLException {
             setSearchPath("sklep");
             RaportOneModel raportOneModel = new RaportOneModel();
@@ -138,6 +157,11 @@ public class UtilsDatabase {
         }
 
     //Raport 2
+        /**
+         * Metoda raportTwoButtonOne() odpowiadająca za pierwszy przycisk raportu 2 - wygenerowanie raportu
+         * @return resultSet
+         * @throws SQLException - wyjątek
+         */
         public static ResultSet raportTwoButtonOne() throws SQLException {
             setSearchPath("sklep");
             RaportTwoModel raportTwoModel = new RaportTwoModel();
@@ -145,6 +169,11 @@ public class UtilsDatabase {
             return resultset;
         }
 
+        /**
+         * Metoda raportTwoButtonTwo() odpowiadająca za drugi przycisk raportu 2 - zapis raportu do pliku
+         * @param mainGUIForm - główne okno programu
+         * @throws SQLException - wyjątek
+         */
         public static void raportTwoButtonTwo(View.MainGUIForm mainGUIForm) throws SQLException {
             setSearchPath("sklep");
             RaportTwoModel raportTwoModel = new RaportTwoModel();
@@ -152,6 +181,12 @@ public class UtilsDatabase {
         }
 
     //Raport 3
+        /**
+         * Metoda raportThreeButtonOne() odpowiadająca za pierwszy przycisk raportu 3 - wygenerowanie raportu
+         * @param value - wartość
+         * @return resultSet
+         * @throws SQLException - wyjątek
+         */
         public static ResultSet raportThreeButtonOne(Double value) throws SQLException {
             setSearchPath("sklep");
             RaportThreeModel raportThreeModel = new RaportThreeModel();
@@ -159,6 +194,11 @@ public class UtilsDatabase {
             return resultset;
         }
 
+        /**
+         * Metoda raportThreeButtonTwo() odpowiadająca za drugi przycisk raportu 3 - zapis raportu do pliku
+         * @param mainGUIForm - główne okno programu
+         * @throws SQLException - wyjątek
+         */
         public static void raportThreeButtonTwo(View.MainGUIForm mainGUIForm) throws SQLException {
             setSearchPath("sklep");
             RaportThreeModel raportThreeModel = new RaportThreeModel();

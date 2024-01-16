@@ -7,7 +7,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Klasa MainINSERTModel odpowiadająca za INSERT w bazie danych
+ */
 public class MainINSERTModel {
+
+    /**
+     * Metoda insertMain() odpowiadająca za główny INSERT
+     * @param mainGUIForm - główne okno programu
+     * @param tableName - nazwa tabeli do której wykonywany będzie INSERT
+     * @param number - liczba kolumn w tabeli
+     * @return true/false
+     * @throws SQLException - wyjątek
+     */
     public static Boolean insertMainMethod(Connection connection, View.MainGUIForm mainGUIForm, String tableName, int number) {
         ArrayList<String> arrayList_labels = new ArrayList<>();
         ArrayList<String> arrayList_text = new ArrayList<>();

@@ -8,15 +8,21 @@ import java.sql.ResultSet;
 import java.util.Objects;
 
 /**
- * Klasa RaportOneGUIController odpowiadająca za kontrolę okna programu odpowiadającego za Raport 1
+ * Klasa RaportThreeGUIController odpowiadająca za kontrolę okna programu odpowiadającego za Raport 3
  */
 public class RaportThreeGUIController {
     private static RaportThreeGUIController raportThreeGUIController;
 
+    /**
+     * Konstruktor klasy RaportThreeGUIController
+     */
     public RaportThreeGUIController(UtilsDatabase utilsDatabase, MainGUIForm mainGUIForm) {
         control(utilsDatabase, mainGUIForm);
     }
 
+    /**
+     * Metoda getInstance() odpowiadająca za utworzenie instancji klasy RaportThreeGUIController
+     */
     public static RaportThreeGUIController getInstance(UtilsDatabase utilsDatabase, MainGUIForm mainGUIForm){
         if(Objects.isNull(raportThreeGUIController)) {
             raportThreeGUIController = new RaportThreeGUIController(utilsDatabase, mainGUIForm);
@@ -29,6 +35,9 @@ public class RaportThreeGUIController {
      * Metoda control() odpowiadająca za kontrolę głównego okna programu
      */
     public void control(UtilsDatabase utilsDatabase, MainGUIForm mainGUIForm) {
+        /**
+         * Metoda addActionListener odpowiadająca za obsłużenie przycisku "Generuj raport"
+         */
         mainGUIForm.getButton_raportsthree_make().addActionListener(e -> {
             try {
                 Double value = Double.parseDouble(mainGUIForm.getTextField_raportsthree_option().getText());
@@ -40,6 +49,9 @@ public class RaportThreeGUIController {
             }
         });
 
+        /**
+         * Metoda addActionListener odpowiadająca za obsłużenie przycisku "Zapisz raport"
+         */
         mainGUIForm.getButton_raportsthree_save().addActionListener(e -> {
             try {
                 utilsDatabase.raportThreeButtonTwo(mainGUIForm);

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Klasa MainSELECTModel odpowiadająca za SELECT
+ * Klasa MainSELECTModel odpowiadająca za SELECT w bazie danych
  */
 public class MainSELECTModel {
     /**

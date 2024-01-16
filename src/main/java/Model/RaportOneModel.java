@@ -5,10 +5,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+/** Klasa modelu raportu pierwszego */
 public class RaportOneModel {
+
+    /** Metoda zwracająca wynik zapytania do bazy danych
+     * @param connection połączenie z bazą danych
+     * @param value wartość, od której mają być wyświetlane wyniki
+     * @return wynik zapytania do bazy danych
+     */
     public static ResultSet raportOneButtonOneMethod(Connection connection, Double value) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Raport_one WHERE ocena >= ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM raportone WHERE ocena >= ?");
             preparedStatement.setDouble(1, value);
             return preparedStatement.executeQuery();
         } catch (Exception exception) {
@@ -16,6 +23,10 @@ public class RaportOneModel {
         }
     }
 
+    /** Metoda zapisująca wynik zapytania do pliku .csv
+     * @param connection połączenie z bazą danych
+     * @param mainGUIForm obiekt klasy View.MainGUIForm
+     */
     public static void raportOneButtonTwoMethod(Connection connection, View.MainGUIForm mainGUIForm) {
         String path = System.getProperty("user.dir");
         String pathToSave = path + "\\src\\main\\java\\Raporty\\Raport1.csv";

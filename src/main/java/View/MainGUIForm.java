@@ -19,15 +19,10 @@ public class MainGUIForm {
     private JPanel panel_bottom;
     private JTabbedPane tabbedPane_main;
     private JPanel panel_tab_si;
-    private JPanel panel_tab_user;
     private JPanel panel_tab_raports;
     private JTabbedPane tabbedPane_si;
     private JPanel panel_si_select;
     private JPanel panel_si_insert;
-    private JTabbedPane tabbedPane_forms;
-    private JPanel panel_user_producent;
-    private JPanel pacel_user_client;
-    private JPanel panel_user_worker;
     private JTabbedPane tabbedPane_raports;
     private JPanel panel_raports_one;
     private JPanel panel_raports_two;
@@ -143,7 +138,7 @@ public class MainGUIForm {
 
     //Główny SELECT
         /**
-         * Metoda panel_si_select_input_right_more_init() odpowiadająca za inicjalizację panelu panel_si_select_input_right_more
+         * Metoda comboBox_si_select_input_table_init() odpowiadająca za inicjalizację ComboBoxa comboBox_si_select_input_table
          * @param
          */
         private void comboBox_si_select_input_table_init(){
@@ -364,7 +359,7 @@ public class MainGUIForm {
 
     //Główny INSERT
         /**
-         * Metoda panel_si_insert_input_init() odpowiadająca za inicjalizację panelu panel_si_insert_input
+         * Metoda comboBox_si_insert_input_init() odpowiadająca za inicjalizację ComboBoxa comboBox_si_insert_input
          */
         private void comboBox_si_insert_input_init(){
             comboBox_si_insert_input.addItem("Producent");
@@ -682,13 +677,10 @@ public class MainGUIForm {
             }
         }
 
-    //Interfejs użytkownika - Producent
-
-    //Interfejs użytkownika - Klient
-
-    //Interfejs użytkownika - Pracownik
-
     //Raport 1
+        /**
+         * Metoda panel_raportsone_input_init() odpowiadająca za inicjalizację panelu panel_raportsone_input
+         */
         public void panel_raportsone_output_init(ResultSet result){
             getPanel_raportsone_output().removeAll();
             getPanel_raportsone_output().setLayout(new BoxLayout(getPanel_raportsone_output(), BoxLayout.Y_AXIS));
@@ -722,6 +714,9 @@ public class MainGUIForm {
         }
 
     //Raport 2
+        /**
+         * Metoda panel_raportstwo_input_init() odpowiadająca za inicjalizację panelu panel_raportstwo_input
+         */
         public void panel_raportstwo_output_init(ResultSet result) {
             getPanel_raportstwo_output().removeAll();
             getPanel_raportstwo_output().setLayout(new BoxLayout(getPanel_raportstwo_output(), BoxLayout.Y_AXIS));
@@ -755,7 +750,10 @@ public class MainGUIForm {
         }
 
     //Raport 3
-    public void panel_raportsthree_output_init(ResultSet result) {
+        /**
+         * Metoda panel_raportsthree_input_init() odpowiadająca za inicjalizację panelu panel_raportsthree_input
+         */
+        public void panel_raportsthree_output_init(ResultSet result) {
         getPanel_raportsthree_output().removeAll();
         getPanel_raportsthree_output().setLayout(new BoxLayout(getPanel_raportsthree_output(), BoxLayout.Y_AXIS));
         try {

@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="InternetShop_Database_BdProject:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/InternetShop_Database_BdProject_jar</output-path>
+    <root id="archive" name="InternetShop_Database_BdProject.jar">
+      <element id="module-output" name="InternetShop_Database_BdProject" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/postgresql/postgresql/42.7.1/postgresql-42.7.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/checkerframework/checker-qual/3.41.0/checker-qual-3.41.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/mybatis/mybatis/3.5.7/mybatis-3.5.7.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

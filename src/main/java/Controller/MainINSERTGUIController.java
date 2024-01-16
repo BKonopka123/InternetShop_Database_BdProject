@@ -16,10 +16,17 @@ public class MainINSERTGUIController {
     private static MainINSERTGUIController mainINSERTGUIController;
     private String selectedTable;
 
+    /**
+     * Konstruktor klasy MainINSERTGUIController
+     */
     public MainINSERTGUIController(UtilsDatabase utilsDatabase, MainGUIForm mainGUIForm) {
         control(utilsDatabase, mainGUIForm);
     }
 
+    /**
+     * Metoda getInstance() tworząca instancję klasy MainINSERTGUIController
+     * @return instancja klasy MainGUIController
+     */
     public static MainINSERTGUIController getInstance(UtilsDatabase utilsDatabase, MainGUIForm mainGUIForm){
         if(Objects.isNull(mainINSERTGUIController)) {
             mainINSERTGUIController = new MainINSERTGUIController(utilsDatabase, mainGUIForm);

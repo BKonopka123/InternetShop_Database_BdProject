@@ -8,15 +8,21 @@ import java.sql.ResultSet;
 import java.util.Objects;
 
 /**
- * Klasa RaportOneGUIController odpowiadająca za kontrolę okna programu odpowiadającego za Raport 1
+ * Klasa RaportTwoGUIController odpowiadająca za kontrolę okna programu odpowiadającego za Raport 2
  */
 public class RaportTwoGUIController {
     private static RaportTwoGUIController raportTwoGUIController;
 
+    /**
+     * Konstruktor klasy RaportTwoGUIController
+     */
     public RaportTwoGUIController(UtilsDatabase utilsDatabase, MainGUIForm mainGUIForm) {
         control(utilsDatabase, mainGUIForm);
     }
 
+    /**
+     * Metoda getInstance() odpowiadająca za zwrócenie instancji klasy RaportTwoGUIController
+     */
     public static RaportTwoGUIController getInstance(UtilsDatabase utilsDatabase, MainGUIForm mainGUIForm){
         if(Objects.isNull(raportTwoGUIController)) {
             raportTwoGUIController = new RaportTwoGUIController(utilsDatabase, mainGUIForm);
@@ -29,6 +35,9 @@ public class RaportTwoGUIController {
      * Metoda control() odpowiadająca za kontrolę głównego okna programu
      */
     public void control(UtilsDatabase utilsDatabase, MainGUIForm mainGUIForm) {
+        /**
+         * Metoda getButton_raportstwo_make() odpowiadająca za obsłużenie przycisku "Generuj raport"
+         */
         mainGUIForm.getButton_raportstwo_make().addActionListener(e -> {
             try {
                 ResultSet resultSet = utilsDatabase.raportTwoButtonOne();
@@ -39,6 +48,9 @@ public class RaportTwoGUIController {
             }
         });
 
+        /**
+         * Metoda getButton_raportstwo_save() odpowiadająca za obsłużenie przycisku "Zapisz raport"
+         */
         mainGUIForm.getButton_raportstwo_save().addActionListener(e -> {
             try {
                 utilsDatabase.raportTwoButtonTwo(mainGUIForm);
